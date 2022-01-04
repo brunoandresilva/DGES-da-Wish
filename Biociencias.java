@@ -1,3 +1,4 @@
-public class Biociencias {
+public class Biociencias extends Curso {
+    ArrayList<Curso> biociencias;
     
 }

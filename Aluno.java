@@ -1,5 +1,5 @@
 
-public class Aluno {
+public  class Aluno {
     private int id;
     private String nome;
     private int idade;
@@ -10,6 +10,7 @@ public class Aluno {
     private boolean deficiencia;
     private boolean zonaDesfavorecida;
     private int genero;
+    
     
 
     //constructor
@@ -66,5 +67,7 @@ public class Aluno {
     public int getGenero(){
         return this.genero;
     }
+
+    
 
 }

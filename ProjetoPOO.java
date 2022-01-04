@@ -69,8 +69,17 @@ public class ProjetoPOO {
                 System.out.println("1-Masculino");
                 System.out.println("2-Feminino");
                 int genero = input.nextInt();
+
+                //System.out.println("Universidade: ");
+                //String universidade = input.nextLine();
+                //System.out.println("Escolha do Curso: ");
+                //String curso = input.nextLine();
+                
+            
+
             
                 Aluno a = new Aluno(id, nome, idade, notaSecundario, notaIngles, exameA, exameB, deficiencia, zonaDesfavorecida, genero);
+
                 //input.close();
                 break;
 
