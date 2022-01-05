@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public  class Aluno {
     private int id;
@@ -9,7 +10,8 @@ public  class Aluno {
     private int exameB;
     private boolean deficiencia;
     private boolean zonaDesfavorecida;
-    private int genero;
+    private int genero; //1-masc; 2-fem; 3-outro (temporario)
+    private ArrayList<Curso> candidatura = new ArrayList<Curso>();
     
     
 
@@ -26,7 +28,6 @@ public  class Aluno {
         this.deficiencia = deficiencia;
         this.zonaDesfavorecida = zonaDesfavorecida;
         this.genero = genero;
-
     }
     //getters
     public int getId(){
@@ -67,6 +68,19 @@ public  class Aluno {
     public int getGenero(){
         return this.genero;
     }
+    public ArrayList<Curso> getCandidatura() {
+        return candidatura;
+    }
+    public void setCandidatura(ArrayList<Curso> candidatura) {
+        this.candidatura = candidatura;
+    }
+
+    public void addCurso(Curso c){
+        this.candidatura.add(c);
+        c.calcMedia(this);
+    }
+
+    
 
     
 
