@@ -47,6 +47,23 @@ public class ProjetoPOO {
             o.printStackTrace();
         }
 
+        boolean x = true;
+        while (x) {
+            int option;
+            System.out.println("-------MENU-PRINCIPAL-------");
+            System.out.println("1-> Registar novo Candidato");
+            System.out.println("2-> Registar Novo curso c/Numerus Clausus e calc de média");
+            System.out.println("3-> Ler cód de Candidato e Mostrar Resultado");
+            System.out.println("4-> Lista de colocados de 1 dado curso");
+            System.out.println("5-> Curso com maior numero de candidatos do genero feminino");
+            System.out.println("6-> Percentagem de alunos colocados com necessidades educativas");
+            System.out.println("7-> Curso com média de acesso mais alta");
+            System.out.println("8-> Curso com média de acesso mais baixa");
+            System.out.println("9-> Aluno com média de acesso mais alta");
+            System.out.println("10-> Alunos colocados na primeira opção");
+            System.out.println("11-> Curso com maior numero de colocados em 1 opção");
+        }
+
         for (int i = 0; i < cursos.size(); i++) { // print dos cursos para verificar que leu tudo direito
             System.out.println("----------------------------------------------------------");
             System.out.println("Curso: " + cursos.get(i).getNome());
