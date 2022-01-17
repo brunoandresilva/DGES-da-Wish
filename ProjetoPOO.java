@@ -16,19 +16,24 @@ public class ProjetoPOO {
                 switch (myReader.nextLine()) { // nextLine() lê a linha e avança para a próxima, daí ao adicionar fazer
                                                // sempre nextLine()
                     case "engenharia":
-                        cursos.add(new Engenharia(myReader.nextLine(), myReader.nextLine(), myReader.nextLine()));
+                        cursos.add(new Engenharia(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
+                                Integer.parseInt(myReader.nextLine())));
                         break;
                     case "biociencias":
-                        cursos.add(new Biociencias(myReader.nextLine(), myReader.nextLine(), myReader.nextLine()));
+                        cursos.add(new Biociencias(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
+                                Integer.parseInt(myReader.nextLine())));
                         break;
                     case "ciencias":
-                        cursos.add(new Ciencias(myReader.nextLine(), myReader.nextLine(), myReader.nextLine()));
+                        cursos.add(new Ciencias(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
+                                Integer.parseInt(myReader.nextLine())));
                         break;
                     case "cienciasjur":
-                        cursos.add(new CienciasJur(myReader.nextLine(), myReader.nextLine(), myReader.nextLine()));
+                        cursos.add(new CienciasJur(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
+                                Integer.parseInt(myReader.nextLine())));
                         break;
                     case "humanidades":
-                        cursos.add(new Humanidades(myReader.nextLine(), myReader.nextLine(), myReader.nextLine()));
+                        cursos.add(new Humanidades(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
+                                Integer.parseInt(myReader.nextLine())));
                         break;
                     default:
                         System.out.println("Tipo de curso nao identificado"); // se houver algum erro no ficheiro com os
@@ -48,6 +53,7 @@ public class ProjetoPOO {
             System.out.println("Numerus clausus: " + cursos.get(i).getNumerusClausus());
             System.out.println("Universidade: " + cursos.get(i).getUniversidade());
             System.out.println("Tipo de Curso: " + cursos.get(i).getTipo());
+            System.out.println("Vagas: " + cursos.get(i).getVagas());
         }
 
     }

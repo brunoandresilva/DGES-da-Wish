@@ -5,16 +5,22 @@ public abstract class Curso {
     private String numerusClausus;
     private String universidade;
     private String tipo;
+    private int vagas;
     private HashMap<Aluno, Double> candidatos = new HashMap<Aluno, Double>();
 
-    public Curso(String nome, String num, String uni, String tipo) {
+    public Curso(String nome, String num, String uni, String tipo, int vagas) {
         this.nome = nome;
         this.numerusClausus = num;
         this.universidade = uni;
         this.tipo = tipo;
+        this.vagas = vagas;
     }
 
     public abstract void calcMedia(Aluno a);
+
+    public int getVagas() {
+        return this.vagas;
+    }
 
     public String getTipo() {
         return this.tipo;
