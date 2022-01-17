@@ -6,7 +6,7 @@ public abstract class Curso {
     private String universidade;
     private String tipo;
     private int vagas;
-    private HashMap<Aluno, Double> candidatos = new HashMap<Aluno, Double>();
+    private HashMap<String, Double> candidatos = new HashMap<String, Double>();
 
     public Curso(String nome, String num, String uni, String tipo, int vagas) {
         this.nome = nome;
@@ -50,16 +50,16 @@ public abstract class Curso {
         this.universidade = universidade;
     }
 
-    public HashMap<Aluno, Double> getCandidatos() {
+    public HashMap<String, Double> getCandidatos() {
         return candidatos;
     }
 
-    public void setCandidatos(HashMap<Aluno, Double> candidatos) {
+    public void setCandidatos(HashMap<String, Double> candidatos) {
         this.candidatos = candidatos;
     }
 
     public void addCandidato(Aluno candidato, double media) {
-        this.candidatos.put(candidato, media);
+        this.candidatos.put(candidato.getNome(), media);
     }
 
 }

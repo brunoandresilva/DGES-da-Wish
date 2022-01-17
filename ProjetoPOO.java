@@ -56,6 +56,11 @@ public class ProjetoPOO {
             System.out.println("Vagas: " + cursos.get(i).getVagas());
         }
 
+        System.out.println("****************************************************************");
+        Aluno a = new Aluno(1, "Bruno", 20, 146, 170, 133, 150, false, false, 1);
+        a.addCurso(cursos.get(0));
+        System.out.println("Candidatos: " + cursos.get(0).getCandidatos().keySet());
+
     }
 
 }
