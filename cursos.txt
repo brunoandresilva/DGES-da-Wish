@@ -63,16 +63,6 @@ Licenciatura em Engenharia Civil
 9089
 uminho
 5
-ciencias
-Mestrado Integrado em Medicina
-9813
-uminho
-5
-ciencias
-Enfermagem
-876
-uminho
-5
 humanidades
 Licenciatura em Psicologia
 9219
@@ -83,52 +73,17 @@ Licenciatura em Artes Visuais
 9817
 uminho
 5
-cienciasjur
-Administração Pública
-9002
-uminho
-5
-biociencias
-Licenciatura em Arqueologia
-9006
-uminho
-5
-biociencias
-Licenciatura em Biologia Aplicada
-9688
-uminho
-5
-biociencias
-Licenciatura em Biologia e Geologia
-9012
-uminho
-5
-cienciasjur
+ciencias juridicas
 Licenciatura em Ciência Política
 9019
 uminho
 5
-ciencias
-Licenciatura em Ciências da Computação
-9397
-uminho
-5
-cienciasjur
+ciencias juridicas
 Licenciatura em Ciências da Comunicação
 9023
 uminho
 5
-biociencias
-Licenciatura em Ciências do Ambiente
-9379
-uminho
-5
-ciencias
-Licenciatura em Contabilidade
-9056
-uminho
-5
-cienciasjur
+ciencias juridicas
 Licenciatura em Criminologia e Justiça Criminal
 L078
 uminho

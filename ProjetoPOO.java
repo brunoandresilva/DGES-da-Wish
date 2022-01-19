@@ -1,7 +1,16 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.lang.model.util.ElementScanner14;
+import javax.xml.XMLConstants;
 
 public class ProjetoPOO {
 
@@ -62,11 +71,10 @@ public class ProjetoPOO {
             zonaDesfavorecida = false;
 
         while (genero < 1 || genero > 3) {
-            System.out.print("Genero(1-Mac/2-Fem/3-Outro): ");
+            System.out.print("Genero(1-Masc/2-Fem/3-Outro): ");
             genero = s.nextInt();
         }
 
-        s.close();
         alunos.add(new Aluno(id, nome, idade, notaSecundario, notaIngles, exameA, exameB, deficiencia,
                 zonaDesfavorecida, genero));
         System.out.println("Aluno " + nome + " adicionado com sucesso!");
@@ -74,7 +82,47 @@ public class ProjetoPOO {
     }
 
     public static void newCourse() {
-        // TODO
+        Scanner curso = new Scanner(System.in);
+        int option = 0;
+        System.out.println("-------NOVO CURSO-------");
+        System.out.print("Nome: ");
+        String nome = curso.nextLine();
+        System.out.print("Numerus Clausus: ");
+        String numerus = curso.nextLine();
+        System.out.print("Universidade: ");
+        String uni = curso.nextLine();
+        System.out.print("Vagas: ");
+        int vagas = curso.nextInt();
+        while(option < 1 || option > 5){
+            System.out.println("Tipo de Curso");
+            System.out.println("1-> Engenharia");
+            System.out.println("2-> Ciencias");
+            System.out.println("3-> Ciencias Juridicas");
+            System.out.println("4-> Biociencias");
+            System.out.println("5-> Humanidades");
+            System.out.print("Opcao: ");
+            option  = curso.nextInt();
+        }
+        
+        switch(option){
+            case 1:
+                cursos.add(new Engenharia(nome, numerus, uni, vagas));
+                break;
+            case 2: 
+                cursos.add(new Ciencias(nome, numerus, uni, vagas));
+                break;
+            case 3:
+                cursos.add(new CienciasJur(nome, numerus, uni, vagas));
+                break;
+            case 4:
+                cursos.add(new Biociencias(nome, numerus, uni, vagas));
+                break;
+            case 5:
+                cursos.add(new Humanidades(nome, numerus, uni, vagas));
+                break;
+        }
+        System.out.println("Curso " + nome + " adicionado com sucesso!");
+        
     }
 
     public static void runAlgorithm() {
@@ -82,6 +130,7 @@ public class ProjetoPOO {
     }
 
     public static void listAlunos() {
+        Scanner x = new Scanner(System.in);
         for (int i = 0; i < alunos.size(); i++) {
             System.out.println("**********************");
             System.out.println("Nome: " + alunos.get(i).getNome());
@@ -90,11 +139,18 @@ public class ProjetoPOO {
         return;
     }
 
+    public static void readObject(){
+        //TODO
+    }
+    public static void saveObject(){
+        //TODO
+    }
+
     public static void menu() {
         int option = 0;
-
-        while (true) {
-            Scanner s = new Scanner(System.in);
+        boolean x = true;
+        while (x) {
+            Scanner input = new Scanner(System.in);
             while (option < 1 || option > 5) {
                 System.out.println("-------MENU-PRINCIPAL-------");
                 System.out.println("1-> Registar novo Candidato");
@@ -103,31 +159,80 @@ public class ProjetoPOO {
                 System.out.println("4-> Lista de candidatos ao ensino superior");
                 System.out.println("5-> EXIT");
                 System.out.print("Option: ");
-                option = s.nextInt();
+                option = input.nextInt();
             }
             switch (option) {
                 case 1:
                     newCandidate();
+                    option = 0;
                     break;
                 case 2:
                     newCourse();
+                    option = 0;
                     break;
                 case 3:
                     runAlgorithm();
+                    option = 0;
                     break;
                 case 4:
                     listAlunos();
+                    option = 0;
                     break;
                 case 5:
-                    s.close();
-                    return;
+                    save();
+                    x = false;
+                    break;
             }
-            s.close();
+            
         }
 
     }
 
+
+    public static void save(){
+        //CURSOS
+        try{
+            FileWriter writer1 = new FileWriter("cursos.txt");
+            for(int i = 0; i < cursos.size(); i++){
+                Curso c = cursos.get(i);
+                writer1.write(c.getTipo() + "\n");
+                writer1.write(c.getNome() + "\n");
+                writer1.write(c.getNumerusClausus() + "\n");
+                writer1.write(c.getUniversidade() + "\n");
+                writer1.write(String.valueOf(c.getVagas()) + "\n");
+            }
+            writer1.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        //ALUNOS
+        try{
+            FileWriter writer2 = new FileWriter("alunos.txt");
+            for(int i = 0; i < alunos.size(); i++){
+                Aluno a = alunos.get(i);
+                writer2.write(String.valueOf(a.getId()) + "\n");
+                writer2.write(a.getNome() + "\n");
+                writer2.write(String.valueOf(a.getIdade()) + "\n");
+                writer2.write(String.valueOf(a.getNota()) + "\n");
+                writer2.write(String.valueOf(a.getExameIngles()) + "\n");
+                writer2.write(String.valueOf(a.getExameA()) + "\n");
+                writer2.write(String.valueOf(a.getExameB()) + "\n");
+                writer2.write(String.valueOf(a.getDeficiencia()) + "\n");
+                writer2.write(String.valueOf(a.getzonaDesfavorecida()) + "\n");
+                writer2.write(String.valueOf(a.getGenero()) + "\n");
+            }
+            writer2.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     public static void read() {
+        //CURSOS
         try {
             File myObj = new File("cursos.txt");
             Scanner myReader = new Scanner(myObj);
@@ -146,7 +251,7 @@ public class ProjetoPOO {
                         cursos.add(new Ciencias(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
                                 Integer.parseInt(myReader.nextLine())));
                         break;
-                    case "cienciasjur":
+                    case "ciencias juridicas":
                         cursos.add(new CienciasJur(myReader.nextLine(), myReader.nextLine(), myReader.nextLine(),
                                 Integer.parseInt(myReader.nextLine())));
                         break;
@@ -165,6 +270,38 @@ public class ProjetoPOO {
             System.out.println("Erro ao ler do ficheiro");
             o.printStackTrace();
         }
+
+        //ALUNOS
+        try{
+            File file = new File("alunos.txt");
+            Scanner reader = new Scanner(file);
+            while(reader.hasNextLine()){
+                int id = Integer.parseInt(reader.nextLine());
+                String nome = reader.nextLine();
+                int idade = Integer.parseInt(reader.nextLine());
+                int secundario = Integer.parseInt(reader.nextLine());
+                int ingles = Integer.parseInt(reader.nextLine());
+                int exameA = Integer.parseInt(reader.nextLine());
+                int exameB = Integer.parseInt(reader.nextLine());
+                boolean deficiencia;
+                boolean zonaDesfavorecida;
+                if(reader.nextLine().equals("true"))
+                    deficiencia = true;
+                else
+                    deficiencia = false;
+                if(reader.nextLine().equals("true"))
+                    zonaDesfavorecida = true;
+                else
+                    zonaDesfavorecida = false;
+                int genero = Integer.parseInt(reader.nextLine());
+                alunos.add(new Aluno(id, nome, idade, secundario, ingles, exameA, exameB, deficiencia, zonaDesfavorecida, genero));
+            }
+            reader.close();
+        }  catch (FileNotFoundException o) { // exception caso haja algum problema ao abrir o ficheiro (é obrigatório!)
+            System.out.println("Erro ao ler do ficheiro");
+            o.printStackTrace();
+        }
+    
     }
 
 }
