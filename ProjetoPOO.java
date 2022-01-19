@@ -5,10 +5,129 @@ import java.util.Scanner;
 
 public class ProjetoPOO {
 
+    public static ArrayList<Curso> cursos = new ArrayList<Curso>();
+    public static ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+
     public static void main(String args[]) {
 
-        ArrayList<Curso> cursos = new ArrayList<Curso>(); // ArrayList para guardar todos os cursos disponíveis
+        read();
+        menu();
 
+    }
+
+    public static void newCandidate() {
+        Scanner s = new Scanner(System.in);
+        int id = alunos.size() + 1; // PODE MUDAR A FORMA DE ATRIBUIÇAO DE ID'S
+        String nome;
+        int idade;
+        int notaSecundario;
+        int notaIngles;
+        int exameA;
+        int exameB;
+        boolean deficiencia;
+        boolean zonaDesfavorecida;
+        int genero = 0;
+
+        System.out.println("-------NOVO ALUNO-------");
+        System.out.print("Nome: ");
+        nome = s.nextLine();
+        System.out.print("Idade: ");
+        idade = s.nextInt();
+        System.out.print("Nota Secundario: ");
+        notaSecundario = s.nextInt();
+        System.out.print("Nota Inglês: ");
+        notaIngles = s.nextInt();
+        System.out.print("Exame A: ");
+        exameA = s.nextInt();
+        System.out.print("Exame B: ");
+        exameB = s.nextInt();
+        int choice = 0;
+        while (choice != 1 && choice != 2) { // ESPAÇO PARA MELHORIA AO SELECIONAR DEFICIENCIA/ZONA DESF
+            System.out.print("Deficiencia Cognitiva(1-Sim/2-Não): ");
+            choice = s.nextInt();
+        }
+        if (choice == 1)
+            deficiencia = true;
+        else
+            deficiencia = false;
+        choice = 0;
+
+        while (choice != 1 && choice != 2) {
+            System.out.print("Zona Desfavorecida(1-Sim/2-Não): ");
+            choice = s.nextInt();
+        }
+        if (choice == 1)
+            zonaDesfavorecida = true;
+        else
+            zonaDesfavorecida = false;
+
+        while (genero < 1 || genero > 3) {
+            System.out.print("Genero(1-Mac/2-Fem/3-Outro): ");
+            genero = s.nextInt();
+        }
+
+        s.close();
+        alunos.add(new Aluno(id, nome, idade, notaSecundario, notaIngles, exameA, exameB, deficiencia,
+                zonaDesfavorecida, genero));
+        System.out.println("Aluno " + nome + " adicionado com sucesso!");
+        return;
+    }
+
+    public static void newCourse() {
+        // TODO
+    }
+
+    public static void runAlgorithm() {
+        // MUCH TODO
+    }
+
+    public static void listAlunos() {
+        for (int i = 0; i < alunos.size(); i++) {
+            System.out.println("**********************");
+            System.out.println("Nome: " + alunos.get(i).getNome());
+            System.out.println("ID: " + alunos.get(i).getId());
+        }
+        return;
+    }
+
+    public static void menu() {
+        int option = 0;
+
+        while (true) {
+            Scanner s = new Scanner(System.in);
+            while (option < 1 || option > 5) {
+                System.out.println("-------MENU-PRINCIPAL-------");
+                System.out.println("1-> Registar novo Candidato");
+                System.out.println("2-> Registar Novo curso c/Numerus Clausus e calc de média");
+                System.out.println("3-> Correr Algoritmo");
+                System.out.println("4-> Lista de candidatos ao ensino superior");
+                System.out.println("5-> EXIT");
+                System.out.print("Option: ");
+                option = s.nextInt();
+            }
+            switch (option) {
+                case 1:
+                    newCandidate();
+                    break;
+                case 2:
+                    newCourse();
+                    break;
+                case 3:
+                    runAlgorithm();
+                    break;
+                case 4:
+                    listAlunos();
+                    break;
+                case 5:
+                    s.close();
+                    return;
+            }
+            s.close();
+        }
+
+    }
+
+    public static void read() {
         try {
             File myObj = new File("cursos.txt");
             Scanner myReader = new Scanner(myObj);
@@ -46,38 +165,6 @@ public class ProjetoPOO {
             System.out.println("Erro ao ler do ficheiro");
             o.printStackTrace();
         }
-
-        boolean x = true;
-        while (x) {
-            int option;
-            System.out.println("-------MENU-PRINCIPAL-------");
-            System.out.println("1-> Registar novo Candidato");
-            System.out.println("2-> Registar Novo curso c/Numerus Clausus e calc de média");
-            System.out.println("3-> Ler cód de Candidato e Mostrar Resultado");
-            System.out.println("4-> Lista de colocados de 1 dado curso");
-            System.out.println("5-> Curso com maior numero de candidatos do genero feminino");
-            System.out.println("6-> Percentagem de alunos colocados com necessidades educativas");
-            System.out.println("7-> Curso com média de acesso mais alta");
-            System.out.println("8-> Curso com média de acesso mais baixa");
-            System.out.println("9-> Aluno com média de acesso mais alta");
-            System.out.println("10-> Alunos colocados na primeira opção");
-            System.out.println("11-> Curso com maior numero de colocados em 1 opção");
-        }
-
-        for (int i = 0; i < cursos.size(); i++) { // print dos cursos para verificar que leu tudo direito
-            System.out.println("----------------------------------------------------------");
-            System.out.println("Curso: " + cursos.get(i).getNome());
-            System.out.println("Numerus clausus: " + cursos.get(i).getNumerusClausus());
-            System.out.println("Universidade: " + cursos.get(i).getUniversidade());
-            System.out.println("Tipo de Curso: " + cursos.get(i).getTipo());
-            System.out.println("Vagas: " + cursos.get(i).getVagas());
-        }
-
-        System.out.println("****************************************************************");
-        Aluno a = new Aluno(1, "Bruno", 20, 146, 170, 133, 150, false, false, 1);
-        a.addCurso(cursos.get(0));
-        System.out.println("Candidatos: " + cursos.get(0).getCandidatos().keySet());
-
     }
 
 }
