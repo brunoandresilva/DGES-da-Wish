@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public  class Aluno {
+public  class Aluno implements Serializable{
     private int id;
     private String nome;
     private int idade;
@@ -10,8 +12,9 @@ public  class Aluno {
     private int exameB;
     private boolean deficiencia;
     private boolean zonaDesfavorecida;
-    private int genero; //1-masc; 2-fem; 3-outro (temporario)
-    private ArrayList<Curso> candidatura = new ArrayList<Curso>();
+    private int genero; //1-masc; 2-fem; 3-outro 
+    private List<Curso> candidatura;
+    private boolean colocado;
     
     
 
@@ -28,8 +31,13 @@ public  class Aluno {
         this.deficiencia = deficiencia;
         this.zonaDesfavorecida = zonaDesfavorecida;
         this.genero = genero;
+        this.colocado = false;
+        this.candidatura = new ArrayList<>();
     }
     //getters
+    public boolean getColocado(){
+        return this.colocado;
+    }
     public int getId(){
         return this.id;
     }
@@ -68,8 +76,13 @@ public  class Aluno {
     public int getGenero(){
         return this.genero;
     }
-    public ArrayList<Curso> getCandidatura() {
+    public List<Curso> getCandidatura() {
         return candidatura;
+    }
+
+    //setters
+    public void setColocado(boolean c){
+        this.colocado = c;
     }
     public void setCandidatura(ArrayList<Curso> candidatura) {
         this.candidatura = candidatura;
@@ -77,7 +90,7 @@ public  class Aluno {
 
     public void addCurso(Curso c){
         this.candidatura.add(c);
-        c.calcMedia(this);
+        //c.calcMedia(this);
     }
 
     

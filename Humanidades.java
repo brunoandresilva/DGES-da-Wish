@@ -1,8 +1,8 @@
 
 public class Humanidades extends Curso {
 
-    public Humanidades(String nome, String num, String uni, int vagas) {
-        super(nome, num, uni, "humanidades", vagas);
+    public Humanidades(String nome, int num, String uni, int id) {
+        super(nome, num, uni, "humanidades", id);
     }
 
     @Override

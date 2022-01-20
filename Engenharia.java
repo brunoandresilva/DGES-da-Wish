@@ -1,7 +1,7 @@
 public class Engenharia extends Curso {
 
-    public Engenharia(String nome, String num, String uni, int vagas) {
-        super(nome, num, uni, "engenharia", vagas);
+    public Engenharia(String nome, int num, String uni, int id) {
+        super(nome, num, uni, "engenharia", id);
     }
 
     @Override

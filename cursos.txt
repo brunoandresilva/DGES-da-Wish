@@ -1,100 +1,15 @@
 engenharia
-Licenciatura em Engenharia de Telecominicações e Informática
-9098
+LETI
+3
 uminho
-5
+1
 engenharia
-Licenciatura em Engenharia Eletrónica Industrial e Computadores
-L218
+Eletronica
+3
 uminho
-5
-engenharia
-Licenciatura em Engenharia e Gestão de Sistemas de Informação
-L215
-uminho
-5
-engenharia
-Licenciatura em Engenharia e Gestão Industrial
-9104
-uminho
-5
-engenharia
-Licenciatura em Engenharia de Polímeros
-456
-uminho
-5
-engenharia
-Licenciatura em Engenharia Química e Biológica
-9126
-uminho
-5
-engenharia
-Engenharia Têxtil
-9127
-uminho
-5
-engenharia
-Licenciatura em Engenharia Mecânica
-9123
-uminho
-5
-engenharia
-Licenciatura em Engenharia Informática
-9119
-uminho
-5
-engenharia
-Licenciatura em Engenharia de Materiais
-789
-uminho
-5
-engenharia
-Licenciatura em Engenharia Física
-9113
-uminho
-5
-engenharia
-Licenciatura em Engenharia Biomédica
-901
-uminho
-5
-engenharia
-Licenciatura em Engenharia Civil
-9089
-uminho
-5
-humanidades
-Licenciatura em Psicologia
-9219
-uminho
-5
-humanidades
-Licenciatura em Artes Visuais
-9817
-uminho
-5
+2
 ciencias juridicas
-Licenciatura em Ciência Política
-9019
+Direito
+3
 uminho
-5
-ciencias juridicas
-Licenciatura em Ciências da Comunicação
-9023
-uminho
-5
-ciencias juridicas
-Licenciatura em Criminologia e Justiça Criminal
-L078
-uminho
-5
-humanidades
-Licenciatura em Design de Produto
-8494
-uminho
-5
-humanidades
-Licenciatura em Design e Marketing de Moda
-9499
-uminho
-5
+3

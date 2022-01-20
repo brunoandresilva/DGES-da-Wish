@@ -1,7 +1,7 @@
 public class Biociencias extends Curso {
 
-    public Biociencias(String nome, String num, String uni, int vagas) {
-        super(nome, num, uni, "biociências", vagas);
+    public Biociencias(String nome, int num, String uni, int id) {
+        super(nome, num, uni, "biociências", id);
     }
 
     @Override

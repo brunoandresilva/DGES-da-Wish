@@ -1,7 +1,7 @@
 public class Ciencias extends Curso {
 
-    public Ciencias(String nome, String num, String uni, int vagas) {
-        super(nome, num, uni, "ciências", vagas);
+    public Ciencias(String nome, int num, String uni, int id) {
+        super(nome, num, uni, "ciências", id);
     }
 
     @Override
