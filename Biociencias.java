@@ -1,7 +1,22 @@
+import java.util.Iterator;
+
 public class Biociencias extends Curso {
 
     public Biociencias(String nome, int num, String uni, int id) {
         super(nome, num, uni, "biociências", id);
+    }
+
+
+    public Biociencias clone(){
+        Biociencias temp = new Biociencias(super.getNome(), super.getNumerusClausus(), super.getUniversidade(), super.getId());
+        for(Aluno a: super.getColocados()){
+            temp.addColocado(a);
+        }
+        Iterator<Aluno> itr = super.getCandidatos().keySet().iterator();
+        while(itr.hasNext()){
+            super.addCandidato(itr.next(), super.getCandidatos().get(itr.next()));
+        }
+        return temp;
     }
 
     @Override
@@ -12,5 +27,18 @@ public class Biociencias extends Curso {
         if (a.getDeficiencia())
             media += 5;
         super.addCandidato(a, media);
+    }
+
+    
+    public boolean equals(Object o){
+        if (this == o) 
+            return true; 
+        if (o == null) 
+            return false;
+        if ( this.getClass() != o.getClass() ) 
+            return false;
+            
+        Curso temp = (Curso) o;
+        return temp.getId() == super.getId(); 
     }
 }

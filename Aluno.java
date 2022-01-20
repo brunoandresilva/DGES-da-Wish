@@ -93,7 +93,26 @@ public  class Aluno implements Serializable{
         //c.calcMedia(this);
     }
 
-    
+    public Aluno clone(){
+        Aluno temp = new Aluno(this.getId(), this.getNome(), this.getIdade(), this.getNota(), this.getExameIngles(), this.getExameA(), this.getExameB(), this.getDeficiencia(), this.getzonaDesfavorecida(), this.getGenero());
+        temp.setColocado(this.getColocado());
+        for(Curso c: this.getCandidatura()){
+            temp.addCurso(c);
+        }
+        return temp;
+    }
+
+    public boolean equals(Object o){
+        if (this == o) 
+            return true; 
+        if (o == null) 
+            return false;
+        if ( this.getClass() != o.getClass() ) 
+            return false;
+            
+        Curso temp = (Curso) o;
+        return temp.getId() == this.getId(); 
+    }
 
     
 

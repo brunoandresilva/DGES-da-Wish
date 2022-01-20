@@ -79,16 +79,8 @@ public abstract class Curso implements Serializable{
         this.colocados.add(a);
     }
 
-    public int removeCandidato(Aluno a){
-        int counter = 0;
-        Iterator<Aluno> itr = this.candidatos.keySet().iterator();
-        while(itr.hasNext()){
-            if(itr.next() == a){
-                this.candidatos.remove(a);
-            }
-            counter++;
-        }
-        return counter;
+    public void removeCandidato(Aluno a){
+        this.candidatos.remove(a);
     }
 
     public boolean removeColocado(Aluno a){
@@ -98,6 +90,8 @@ public abstract class Curso implements Serializable{
     public void addCandidato(Aluno candidato, double media) {
         this.candidatos.put(candidato, media);
     }
+
+    
 
 
 }

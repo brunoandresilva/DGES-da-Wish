@@ -45,39 +45,44 @@ public class ProjetoPOO {
             HashMap<Aluno, Double> tmp = new HashMap<>();
             List<Entry<Aluno, Double>> list = new ArrayList<>(c.getCandidatos().entrySet());
             list.sort(Entry.comparingByValue());
-            list.forEach(e -> tmp.put(e.getKey(), e.getValue()));
             Collections.reverse(list);
+            list.forEach(e -> tmp.put(e.getKey(), e.getValue()));
             c.setCandidatos(tmp);
         }
 
         LinkedList<Curso> tempCursos = new LinkedList<>(cursos);
-        List<Aluno> tempAlunos;
         try{
-            for(int i = 0; i < tempCursos.size(); i++){
-                Curso c = tempCursos.get(i);
-                //tempCursos.remove(c);
-                tempAlunos = c.getCandidatos().keySet().stream().limit(c.getNumerusClausus()).filter(a -> a.getColocado() == false).toList();
-                tempAlunos.stream().forEach(a -> {a.setColocado(true); c.addColocado(a); System.out.println("Aluno " + a.getNome() + " - " + c.getNome());});
-                for(Aluno a: tempAlunos){
-                    boolean flag = false;
-                    for(Curso x: a.getCandidatura()){
-                        if(flag){
-                            System.out.println("1");
-                            if(x.removeCandidato(a) < x.getNumerusClausus()){
-                                System.out.println("1.1");
-                                tempCursos.add(x);
-                                x.removeColocado(a);
-                            }
-                                
-                            System.out.println("passou");
-                        }
-                        if(x == c){
-                            flag = true;
-                        }
+            Curso toRemove = null;
+            for(int j = 0; j < tempCursos.size(); j++){
+                Curso c = tempCursos.get(j);
+                Iterator<Aluno> itr = c.getCandidatos().keySet().iterator();
+                int counter = 0;
+                Aluno aluno = null;
+                while(itr.hasNext()){
+                    Aluno a = itr.next();
+                    if(!a.getColocado() && counter < c.getNumerusClausus()){
+                        a.setColocado(true);
+                        c.addColocado(a);
+                        aluno = a;
+                    }
+                    counter++;
+                }
+                boolean flag = false;
+                for(int i = 0; i < aluno.getCandidatura().size(); i++){
+                    if(aluno.getCandidatura().get(i).equals(c)){
+                        flag = true;
+                    }
+                    if(flag){
+                        aluno.getCandidatura().remove(aluno.getCandidatura().get(i));
+                        System.out.println("1");
+                        aluno.getCandidatura().get(i).removeCandidato(aluno);
+                        System.out.println("2");
                     }
                 }
+                tempCursos.remove(toRemove);
             }
-        } catch(Exception e){System.out.println("ainda nao da " + e);}
+            
+        } catch(Exception e){System.out.println("Exception: " + e);}
     }
 
     public static void showResults(){
@@ -202,9 +207,9 @@ public class ProjetoPOO {
         clearScreen();
         System.out.println("-------ADICIONAR CANDIDATURA-------");
         Aluno a = null;
-        for(int i = 0; i < alunos.size(); i++){
-            if(alunos.get(i).getId() == id)
-                a = alunos.get(i);
+        for(Aluno i: alunos){
+            if(i.getId() == id)
+                a = i;
         }
         if(a == null){
             System.out.println("Nao ha nenhum aluno com esse id");
@@ -221,9 +226,9 @@ public class ProjetoPOO {
             clearScreen();
             System.out.println("ID: " + id);
             System.out.println("Nome: " + a.getNome());
-            System.out.println("Idade: " + a.getIdade() + "anos");
+            System.out.println("Idade: " + a.getIdade() + " anos");
+            System.out.println("*****************CURSOS*********************");
             for(int j = 0; j < cursos.size(); j++){
-                System.out.println("*****************CURSOS*********************");
                 System.out.println("ID: " + cursos.get(j).getId());
                 System.out.println("Nome: " + cursos.get(j).getNome());
                 System.out.println("--------------");
@@ -235,6 +240,7 @@ public class ProjetoPOO {
                 for(Curso k: cursos){
                     if(option == k.getId()){
                         a.addCurso(k);
+                        k.calcMedia(a);
                     }
                 }
             }
@@ -262,14 +268,14 @@ public class ProjetoPOO {
         System.out.println("ID: " + c.getId());
         System.out.println("Numerus Clausus: " + c.getNumerusClausus());
         System.out.println("Universidade: " + c.getUniversidade());
-        System.out.println("Candidatos a este curso: \n\n");
+        System.out.println("Candidatos a este curso: \n");
         Iterator<Aluno> itr = c.getCandidatos().keySet().iterator();
         while(itr.hasNext()){
             Aluno a = itr.next();
             Double media = c.getCandidatos().get(a);
             System.out.println(a.getNome() + ", com media: " + media);
         }
-        System.out.println("\n\nPressione qualquer tecla para voltar");
+        System.out.println("\nPressione qualquer tecla para voltar");
         n.next();
     }
 
